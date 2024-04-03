@@ -42,11 +42,17 @@ class VLCS(ImageList):
         ("Product", "Product.tgz", "https://cloud.tsinghua.edu.cn/f/76186deacd7c4fa0a679/?dl=1"),
         ("Real_World", "Real_World.tgz", "https://cloud.tsinghua.edu.cn/f/dee961894cc64b1da1d7/?dl=1")
     ]
+    # image_list = {
+    #     "C": "image_list/Caltech101.txt",
+    #     "L": "image_list/LabelMe.txt",
+    #     "S": "image_list/SUN09.txt",
+    #     "V": "image_list/VOC2007.txt",
+    # }
     image_list = {
-        "C": "image_list/Caltech101.txt",
-        "L": "image_list/LabelMe.txt",
-        "S": "image_list/SUN09.txt",
-        "V": "image_list/VOC2007.txt",
+        "C": "image_list/CALTECH_all.txt",
+        "L": "image_list/LABELME_all.txt",
+        "S": "image_list/SUN_all.txt",
+        "V": "image_list/PASCAL_all.txt",
     }
     CLASSES = ['car','person', 'dog', 'bird', 'chair']
 
@@ -58,7 +64,8 @@ class VLCS(ImageList):
             pass
             # list(map(lambda args: download_data(root, *args), self.download_list))
         else:
-            list(map(lambda file_name, _: check_exits(root, file_name), self.download_list))
+            # list(map(lambda x: check_exits(root, x[0]), self.download_list))
+            pass  # Hack to avoid downloading
 
         super(VLCS, self).__init__(root, VLCS.CLASSES, data_list_file=data_list_file, **kwargs)
 
